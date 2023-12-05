@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .day {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            margin: 5px;
+            font-size: 24px;
+            line-height: 100px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Adventi Naptár</h1>
+    <div class="present__pane" id="calendar"></div>
+    <div id="message" class="hidden">Boldog Adventet!</div>
+
+    <script>
+        function openDay(dayNumber) {
+            var today = new Date().getDate();
+            if (dayNumber === today || dayNumber < today) {
+                alert('🖕🖕🖕')
+            } else {
+                alert('Ez az ablak még nem nyitható meg!');
+            }
+        }
+
+        function createCalendar() {
+            var calendar = document.getElementById('calendar');
+            for (var i = 1; i <= 24; i++) {
+                var day = document.createElement('div');
+                day.className = 'day';
+                day.innerHTML = i;
+                day.onclick = (function(i) {
+                    return function() {
+                        openDay(i);
+                    }
+                })(i);
+                calendar.appendChild(day);
+            }
+        }
+
+        createCalendar();
+    </script>
+
+</body>
+</html>
